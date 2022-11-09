@@ -1,0 +1,127 @@
+Reference:
+  species: hs
+  genome: /mnt/data2/wuzengding/00.database/SIRV_ERCC/hg38_SIRV_ERCC_longSIRV.fa
+  annotgtf: /mnt/data2/wuzengding/00.database/SIRV_ERCC/gtf_hg38_SIRV_ERCC/hg38.ref_SIRV_ERCC_longSIRV.gtf
+  annotgff3: /mnt/data2/wuzengding/00.database/SIRV_ERCC/gtf_hg38_SIRV_ERCC/hg38.ref_SIRV_ERCC_longSIRV.gff3
+  bedfile: /mnt/data2/wuzengding/00.database/bed_hg38_hg19/hg38_RefSeq.bed
+  star_index: /mnt/data2/wuzengding/00.database/SIRV_ERCC/index_hg38_SIRV_ERCC_STAR
+
+OUTPATH: /mnt/data2/wuzengding/05.pipeline_dev/temp/result2
+
+Env:
+  python_lib: /data/miniconda3/lib/python3.7/site-packages/:/data/apps/cDNA_Cupcake/sequence/:/data/apps/cDNA_Cupcake/cupcake/tofu/
+  python3: /mnt/data2/wuzengding/03.biotools/miniconda3/envs/py37/bin/python3
+
+Database:
+  disgenet: /mnt/data2/wuzengding/00.database/DisGeNET/curated_gene_disease_associations.tsv
+  fusionhubdb: /mnt/data2/wuzengding/00.database/FusionHubDB/Fusionhub_global_summary.txt
+  transcript2gene: /mnt/data2/wuzengding/00.database/SIRV_ERCC/gtf_hg38_SIRV_ERCC/gencode.v32.annotation.tr2g_gtf.tsv
+  
+SoftwareTools:
+  index: /mnt/data2/wuzengding/02.smrtlink/smrtlink/smrtcmds/bin/pbindex
+  bam2fastq: /mnt/data2/wuzengding/02.smrtlink/smrtlink/smrtcmds/bin/bam2fastq
+  minimap2: /mnt/data2/wuzengding/02.smrtlink/smrtlink/smrtcmds/bin/minimap2
+  align_sv: /mnt/data2/wuzengding/02.smrtlink/smrtlink/smrtcmds/bin/pbmm2
+  short_reads_align: /mnt/data2/wuzengding/03.biotools/miniconda3/bin/STAR
+  picard: /mnt/data2/wuzengding/03.biotools/software/picard/build/libs/picard.jar
+  snpeff: /mnt/data2/wuzengding/03.biotools/software/snpEff
+  snpsift: /mnt/data2/wuzengding/03.biotools/software/snpEff
+  vardict: /mnt/data2/wuzengding/03.biotools/software/VarDictJava/build/install/VarDict
+  samtools: /mnt/data2/wuzengding/02.smrtlink/smrtlink/smrtcmds/bin/samtools
+
+ScriptTools:
+  sqanti_qc: /mnt/data2/wuzengding/03.biotools/software/SQANTI3-4.2/sqanti3_qc.py
+  sqanti_filter: /mnt/data2/wuzengding/03.biotools/software/SQANTI3-4.2/sqanti3_RulesFilter.py
+  collapse_isoforms: /mnt/data2/wuzengding/03.biotools/miniconda3/envs/py37/bin/collapse_isoforms_by_sam.py
+  get_abundance: /mnt/data2/wuzengding/03.biotools/miniconda3/envs/py37/bin/get_abundance_post_collapse.py
+  filter_by_count: /mnt/data2/wuzengding/03.biotools/miniconda3/envs/py37/bin/filter_by_count.py
+  filter_away_subset: /mnt/data2/wuzengding/03.biotools/miniconda3/envs/py37/bin/filter_away_subset.py
+  fusion_finder: /mnt/data2/wuzengding/03.biotools/miniconda3/envs/py37/bin/fusion_finder.py
+  fusion_collate_info: /mnt/data2/wuzengding/03.biotools/miniconda3/envs/py37/bin/fusion_collate_info.py 
+  
+InhouseScript:
+  iosform_attibution: /mnt/data2/wuzengding/05.pipeline_dev/pipeline_SAKit_v1.0/workflow/scripts/iosform_attibution.py
+  mutation_filter: /mnt/data2/wuzengding/05.pipeline_dev/pipeline_SAKit_v1.0/workflow/scripts/mutation_filter.py
+  fusion_annotation: /mnt/data2/wuzengding/05.pipeline_dev/pipeline_SAKit_v1.0/workflow/scripts/fusion_annotation.py 
+  gene_annotation_disease: /mnt/data2/wuzengding/05.pipeline_dev/pipeline_SAKit_v1.0/workflow/scripts/gene_annotation_disease.py
+
+ccs:
+  software:
+    ccsscript:
+    ccstool: /mnt/data2/wuzengding/02.smrtlink/smrtlink/smrtcmds/bin/ccs
+    fqtosam: /mnt/data2/wuzengding/03.biotools/software/picard/build/libs/picard.jar
+  parameter:
+    minpass: 3
+    toppass: 60
+    minsnr: 2.5
+    minlength: 10
+    maxlength: 50000
+    chunk: 9/9
+    minrq: 0.9
+    thread: 40
+    
+demultiplex:
+  software:
+    limascript:
+    limatool: /mnt/data2/wuzengding/02.smrtlink/smrtlink/smrtcmds/bin/lima
+  configfile:
+    barcodefa: /mnt/data2/wuzengding/01.dataset_analysis/00.config/primer.fa
+
+  parameter:
+    libraryDesign:
+    readsflankedbyadapter:
+    maxscoredbarcode: 0
+    maxscoredadapter: 0
+    minpass: 0
+    minlength: 50
+    maxinputlength: 0
+    badadapterratio: 0
+    minscore: 0
+    seqmode: --ccs
+    thread: 10
+refine:
+  software:
+    refinetool: /mnt/data2/wuzengding/02.smrtlink/smrtlink/smrtcmds/bin/isoseq3
+    refinescript: 
+  configfile: 
+    primerfa: /mnt/data2/wuzengding/01.dataset_analysis/00.config/primer.fa
+  parameter:
+    minpolyalength: 20
+    requirepolya: 
+    minrq: -1
+    thread: 10
+cluster:
+  software:
+    clustertool: /mnt/data2/wuzengding/02.smrtlink/smrtlink/smrtcmds/bin/isoseq3
+    clusterscript: 
+  parameter: 
+    poa: 10
+    qvs: --use-qvs
+    outputpattern: --singletons
+    thread: 10
+    
+align:
+  software: /mnt/data2/wuzengding/02.smrtlink/smrtlink/smrtcmds/bin/minimap2
+  parameter:
+      ax: splice
+      secondary: no
+      o: -O6,24
+      b4: -B4
+      uf: -uf
+      hard_clip_off: -Y
+      
+collapse:
+  parameter:
+    short5: -dun-merge-5-shorter 
+    mincov: 0.99 
+    miniden: 0.95
+    
+
+isoform_filter_bycounts:
+  parameter:
+    cutoff: 2 
+    use_group_count: off
+
+PBsvParam:
+  min_ref_span: 50
+  call_min_read_perc_one_sample: 0
