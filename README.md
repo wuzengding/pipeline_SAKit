@@ -6,7 +6,7 @@
       <br>
                     TAA_selection pipeline
       <br>
-      <a href="https://github.com/wuzengding/TAA_Selection/"><img src="img/TAA_selection.png" alt="TAA_Selection" width="1000"></a>
+      <a href="https://github.com/wuzengding/pipeline_SAKit/"><img src="img/Figure1.pipeline.png" alt="Figure1.pipeline" width="1000"></a>
       <br>
     </h3>
 # Install from github
