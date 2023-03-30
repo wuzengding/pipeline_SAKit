@@ -1,4 +1,4 @@
-SampleID: AML_sample_001
+SampleID: MC38_xenograft_Case
 PACBIOREADS:
   #cluster_report: /mnt/data2/wuzengding/01.dataset_analysis/RunResult/07.PRJNA777579_spike-in/pacbio_20212106/Brain_Reference_SIRV_4/05.CLUSTER/Brain_Reference_SIRV_4.flnc.clustered.cluster_report.csv
   #hq_transcripts: /mnt/data2/wuzengding/01.dataset_analysis/RunResult/07.PRJNA777579_spike-in/pacbio_20212106/Brain_Reference_SIRV_4/05.CLUSTER/Brain_Reference_SIRV_4.flnc.clustered.hq.fasta.gz
@@ -6,7 +6,7 @@ PACBIOREADS:
   #cluster_report: /mnt/data2/wuzengding/06.data_AML/03.Result.pacbio/CS-0763-QYRM-002-01-01/pacbio_20220105/CS-0763-QYRM-002-01-01/05.CLUSTER/CS-0763-QYRM-002-01-01.flnc.clustered.cluster_report.csv
   #hq_transcripts: /mnt/data2/wuzengding/06.data_AML/03.Result.pacbio/CS-0763-QYRM-002-01-01/pacbio_20220105/CS-0763-QYRM-002-01-01/05.CLUSTER/CS-0763-QYRM-002-01-01.flnc.clustered.hq.fasta.gz
   #flnc: /mnt/data2/wuzengding/06.data_AML/01.Rawdata.pacbio.bam/m64196e_211221_100240.subreads.bcc1012--bcc1012.bam
-  Subreadbam: /mnt/data2/wuzengding/06.data_AML/01.Rawdata.pacbio.bam/m64196e_211221_100240.subreads.bcc1012--bcc1012.bam
+  Subreadbam: /mnt/data2/wuzengding/01.dataset/11.MC38_Xomic/Inhouse_RNC_pacbio_20221207/B1_zhognliu_RNC/all/FISO22H003705-1A/m64292e_221113_062246.subreads.bam
 NGSShortReads:
-  fastq_R1: /mnt/data2/wuzengding/06.data_AML/02.Rawdata.illumina.fastq/GHTL21100154_2.R1.fastq.gz
+  fastq_R1: /mnt/data2/wuzengding/06.data_AML/02.Rawdata.illumina.fastq/GHTL21100154_2.R1.fastq.gz 
   fastq_R2: /mnt/data2/wuzengding/06.data_AML/02.Rawdata.illumina.fastq/GHTL21100154_2.R2.fastq.gz

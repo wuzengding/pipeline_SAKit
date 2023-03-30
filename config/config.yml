@@ -65,7 +65,7 @@ demultiplex:
     limascript:
     limatool: /mnt/data2/wuzengding/02.smrtlink/smrtlink/smrtcmds/bin/lima
   configfile:
-    barcodefa: /mnt/data2/wuzengding/01.dataset_analysis/00.config/primer.fa
+    barcodefa: /mnt/data2/wuzengding/02.ResDev/00.config/primer.fa
 
   parameter:
     libraryDesign:
@@ -84,7 +84,7 @@ refine:
     refinetool: /mnt/data2/wuzengding/02.smrtlink/smrtlink/smrtcmds/bin/isoseq3
     refinescript: 
   configfile: 
-    primerfa: /mnt/data2/wuzengding/01.dataset_analysis/00.config/primer.fa
+    primerfa: /mnt/data2/wuzengding/02.ResDev/00.config/primer.fa
   parameter:
     minpolyalength: 20
     requirepolya: 

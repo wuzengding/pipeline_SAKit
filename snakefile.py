@@ -46,5 +46,4 @@ include: "workflow/rules/09.1.Fusion_calling.smk.py"
 include: "workflow/rules/09.2.Fusion_classification.smk.py"
 include: "workflow/rules/10.Fusion_annotation.py"
 include: "workflow/rules/11.SV_calling.smk.py"
-
 include: "workflow/rules/13.SnvIndelCalling.smk.py"
