@@ -2,7 +2,7 @@ cutoff = config["isoform_filter_bycounts"]["parameter"]["cutoff"]
 rule Isoform_filter_bycounts:
     input:
         cluster_report = rules.Cluster.output.cluster_report,
-        collapsed_gff = rules.Isoform_calling.output.cupcake_collapsed_gff
+        collapsed_gff = rules.Isoform_calling.output.cupcake_collapsed_gff,
     
     output:
         cupcake_collapsed_read_stat = os.path.join(outpath,"results/04.Isoform_Calling/{sample}.collapsed.read_stat.txt".format(sample=SampleID)),
@@ -16,22 +16,23 @@ rule Isoform_filter_bycounts:
                                   
     params:
         get_abun_script = config["ScriptTools"]["get_abundance"],
-        get_abun_prefix = "results/04.Isoform_Calling/{sample}.collapsed".format(sample=SampleID),
-        
+        get_abun_prefix = os.path.join(outpath,"results/04.Isoform_Calling/{sample}.collapsed".format(sample=SampleID)),
         filter_by_count = config["ScriptTools"]["filter_by_count"],
         filt_bycount_prefix = os.path.join(outpath,"results/04.Isoform_Calling/{sample}.collapsed".format(sample=SampleID)),
         filt_bycount_cutoff = cutoff,
-        use_group_count = config["isoform_filter_bycounts"]["parameter"]["use_group_count"]
-        
+    conda:
+        "py37"
     log:
-        os.path.join(outpath,"log/isoform_filter_bycounts.log")
+        os.path.join(outpath,"log/{0}.isoform_filter_bycounts.log".format(SampleID))
 
     threads:
         1
     
     shell:
         """
-           {config[Env][python3]} {params.get_abun_script} {params.get_abun_prefix} {input.cluster_report} > {log} 2>&1
+        
+        {params.get_abun_script} {params.get_abun_prefix} {input.cluster_report} > {log} 2>&1
            
-           {config[Env][python3]} {params.filter_by_count}  --min_count {params.filt_bycount_cutoff} --dun_use_group_count {params.use_group_count} > {log} 2>&1
+        {params.filter_by_count}  --min_count {params.filt_bycount_cutoff} \
+           --dun_use_group_count {params.filt_bycount_prefix} > {log} 2>&1
         """

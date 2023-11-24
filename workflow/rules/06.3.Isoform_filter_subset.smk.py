@@ -16,15 +16,20 @@ rule Isoform_filter_subset:
         filter_away_subset = config["ScriptTools"]["filter_away_subset"],
         prefix = os.path.join(outpath,"results/04.Isoform_Calling/{sample}.collapsed.min_fl_{filter_count_cutoff}".format(sample=SampleID, filter_count_cutoff = cutoff )),
         sed = "'s/|.*//g'"
-
+        
+    conda:
+        "py37"
+        
     log:
-        os.path.join(outpath,"log/isoform_filter_subset.log")
+        os.path.join(outpath,"log/{0}.Isoform_filter_subset.log".format(SampleID))
 
     threads:
         1
     
     shell:
         """
-            {config[Env][python3]} {params.filter_away_subset} {params.prefix}> {log} 2>&1
+        
+        {params.filter_away_subset} {params.prefix}> {log} 2>&1
             sed {params.sed} {output[1]}> {output[2]}
+
         """

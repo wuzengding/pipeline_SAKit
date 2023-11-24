@@ -14,22 +14,26 @@ rule Isoform_calling:
         short5merge = config["collapse"]["parameter"]["short5"],
         mincov = config["collapse"]["parameter"]["mincov"],
         miniden = config["collapse"]["parameter"]["miniden"],
-        prefix = os.path.join(outpath,"results/04.Isoform_Calling/{sample}.".format(sample=SampleID)),
+        prefix = os.path.join(outpath,"results/04.Isoform_Calling/{sample}".format(sample=SampleID)),
         fq = ""
 
-
+    conda:
+        "py37"
+        
     log:
-        os.path.join(outpath,"log/collapse.log")
+        os.path.join(outpath,"log/{0}.Isoform_calling.log".format(SampleID))
 
     threads:
         1
     
     shell:
         """
-            {config[Env][python3]} {params.collapse} \
+            {params.collapse} \
             --input {input.hq_transcripts} \
             {params.fq} \
             -s  {input.sorted_sam}  \
-            -o {params.prefix} {params.short5merge} 
-            {params.mincov} {params.miniden} > {log} 2>&1
+            -o {params.prefix} {params.short5merge}  \
+            -c {params.mincov} \
+            -i {params.miniden} > {log} 2>&1
+
         """

@@ -24,7 +24,7 @@ rule Isoform_quantfs:
         quant_file = os.path.join(outpath,"results/05.Isoform_Novel/Salmon_Isoformfiltered/quant.sf"),
         kmer = 31
     log:
-        os.path.join(outpath,"log/Isoform_quantfs.log")
+        os.path.join(outpath,"log/{0}.Isoform_quantfs.log".format(SampleID))
 
     threads:
         18

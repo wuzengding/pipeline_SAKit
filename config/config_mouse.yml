@@ -1,13 +1,13 @@
 Reference:
-  species: hs
-  genome: /mnt/user/wzd/00.database/SIRV_ERCC/hg38_SIRV_ERCC_longSIRV.fa
-  annotgtf: /mnt/user/wzd/00.database/SIRV_ERCC/gtf_hg38_SIRV_ERCC/hg38.ref_SIRV_ERCC_longSIRV.gtf
-  annotgff3: /mnt/user/wzd/00.database/SIRV_ERCC/gtf_hg38_SIRV_ERCC/hg38.ref_SIRV_ERCC_longSIRV.gff3
-  bedfile: /mnt/user/wzd/00.database/bed_hg38_hg19/hg38_RefSeq.bed
-  rRNA_bed: /mnt/user/wzd/00.database/bed_hg38_hg19/hg38_rRNA.bed
-  refFlat: /mnt/user/wzd/00.database/bed_hg38_hg19/refFlat.txt
-  rRNA_interval: /mnt/user/wzd/00.database/rRNA.interval/hg38.rRNA.interval_list
-  star_index: /mnt/user/wzd/00.database/SIRV_ERCC/index_hg38_SIRV_ERCC_STAR
+  species: mm
+  genome: /mnt/user/wzd/00.database/15.index_mouse_genome/Mus_musculus.GRCm39.dna.primary_assembly.fa
+  annotgtf: /mnt/user/wzd/00.database/16.annot_mouse/Mus_musculus.GRCm39.107.gtf
+  annotgff3: /mnt/user/wzd/00.database/16.annot_mouse/Mus_musculus.GRCm39.107.gff3
+  bedfile: /mnt/user/wzd/00.database/16.annot_mouse/Mus_musculus.GRCm39.107.bed
+  rRNA_bed: /mnt/user/wzd/00.database/16.annot_mouse/GRCm39_GENCODE_VM27_rRNAs.bed
+  refFlat: /mnt/user/wzd/00.database/16.annot_mouse/refFlat.txt
+  rRNA_interval: /mnt/user/wzd/00.database/rRNA.interval/mm39.rRNA.interval_list
+  star_index: /mnt/user/wzd/00.database/15.index_mouse_genome/index_GRCm39_ensemble107.star
 
 SampleYml: /mnt/user/wzd/05.pipeline_dev/pipeline_SAKit_v1.0/config/sample.yml
 OUTPATH: /mnt/user/wzd/05.pipeline_dev/temp/result2
@@ -21,7 +21,6 @@ Database:
   disgenet: /mnt/user/wzd/00.database/DisGeNET/curated_gene_disease_associations.tsv
   fusionhubdb: /mnt/user/wzd/00.database/FusionHubDB/Fusionhub_global_summary.txt
   transcript2gene: /mnt/user/wzd/00.database/SIRV_ERCC/gtf_hg38_SIRV_ERCC/gencode.v32.annotation.tr2g_gtf.tsv
-  
   
 SoftwareTools:
   index: /mnt/user/wzd/03.biotools/pacbio_smrtlink/smrtlink_v12/smrtcmds/bin/pbindex
@@ -46,7 +45,7 @@ ScriptTools:
   filter_by_count: /mnt/user/wzd/03.biotools/miniforge3/envs/py37/bin/filter_by_count.py
   filter_away_subset: /mnt/user/wzd/03.biotools/miniforge3/envs/py37/bin/filter_away_subset.py
   fusion_finder: /mnt/user/wzd/03.biotools/miniforge3/envs/py37/bin/fusion_finder.py
-  fusion_collate_info: /mnt/user/wzd/03.biotools/miniforge3/envs/py37/bin/fusion_collate_info.py 
+  fusion_collate_info: /mnt/user/wzd/03.biotools/miniforge3/envs/py37/bin/fusion_collate_info.py
   
 InhouseScript:
   iosform_attibution: /mnt/user/wzd/05.pipeline_dev/pipeline_SAKit_v1.0/workflow/scripts/iosform_attibution.py
@@ -130,6 +129,7 @@ collapse:
 isoform_filter_bycounts:
   parameter:
     cutoff: 2 
+    use_group_count: --dun_use_group_count
 
 PBsvParam:
   min_ref_span: 50

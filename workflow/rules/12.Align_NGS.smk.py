@@ -8,8 +8,9 @@ rule Align_NGS:
         r2 = config["NGSShortReads"]["fastq_R2"]
 
     output:
-        os.path.join(outpath,"results/03.Align_NGS/{0}_short_reads_genome_alignment.status".format(SampleID)),
+        #os.path.join(outpath,"results/03.Align_NGS/{0}_short_reads_genome_alignment.status".format(SampleID)),
         os.path.join(outpath,"results/03.Align_NGS/{0}_Aligned.sortedByCoord.out.bam".format(SampleID)),
+        os.path.join(outpath,"results/03.Align_NGS/{0}_Aligned.sortedByCoord.out.bam.bai".format(SampleID)),
         os.path.join(outpath,"results/03.Align_NGS/{0}_SJ.out.tab".format(SampleID))
     
     params:
@@ -23,7 +24,7 @@ rule Align_NGS:
         output_prefix = os.path.join(outpath,"results/03.Align_NGS/{0}_".format(SampleID))
 
     log:
-        os.path.join(outpath,"log/{0}.short_reads_genome_alignment.log".format(SampleID))
+        os.path.join(outpath,"log/{0}.Align_NGS.log".format(SampleID))
 
     threads:
         18
@@ -35,6 +36,6 @@ rule Align_NGS:
                 --runThreadN {threads} \
                 --outFileNamePrefix {params.output_prefix} \
                 --readFilesIn {input.r1} {input.r2} > {log} 2>&1
-            {config[SoftwareTools][samtools]} index {output[1]}
-            touch {output}
+            {config[SoftwareTools][samtools]} index {output[0]}
+            touch {output[1]}
         """

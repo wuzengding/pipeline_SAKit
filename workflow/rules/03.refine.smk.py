@@ -5,7 +5,7 @@ rule Refine:
     output:
         flnc_xml = os.path.join(outpath,"results/01.CCS_Trim/{0}.flnc.consensusreadset.xml".format(SampleID)),
         flnc_bam = os.path.join(outpath,"results/01.CCS_Trim/{0}.flnc.bam".format(SampleID)),
-        ccs_fq = os.path.join(outpath,"results/01.CCS_Trim/{0}.ccs.fastq".format(SampleID))
+        flnc_fq = os.path.join(outpath,"results/01.CCS_Trim/{0}.flnc.fastq".format(SampleID))
     log:
         os.path.join(outpath,"log/{0}.Refine.log".format(SampleID))
     params:
@@ -14,7 +14,7 @@ rule Refine:
         requirepolya=config["refine"]["parameter"]["requirepolya"],
         minrq = config["refine"]["parameter"]["minrq"],
         thread = config["refine"]["parameter"]["thread"],
-        prefix_output = "results/01.CCS_Trim/{0}.ccs".format(SampleID),
+        prefix_output = "results/01.CCS_Trim/{0}.flnc".format(SampleID),
         dont_compress = "-u"
     shell:
         """

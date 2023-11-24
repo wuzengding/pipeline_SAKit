@@ -5,7 +5,7 @@ rule DeMultiplex:
     output:
         demulxml = os.path.join(outpath,"results/01.CCS_Trim/{0}.demultiplex.consensusreadset.xml".format(SampleID)),
     log:
-        os.path.join(outpath,"log/{0}.demultiplex.log".format(SampleID))
+        os.path.join(outpath,"log/{0}.Drunemultiplex.log".format(SampleID))
     params:
         #prefix = os.path.join(outpath,"{batchid}/{SampleID}/03.DEMULTIPLEX/{SampleID}.demultiplex"),
         limatool = config["demultiplex"]["software"]["limatool"],

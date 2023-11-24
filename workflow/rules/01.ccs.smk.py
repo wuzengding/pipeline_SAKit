@@ -7,7 +7,7 @@ rule CCS:
         ccsreport = os.path.join(outpath,"results/01.CCS_Trim/{0}.ccs.report.txt".format(SampleID)),
         ccsmetrics = os.path.join(outpath,"results/01.CCS_Trim/{0}.ccs.zmw_metrics.json.gz".format(SampleID))
     log:
-        os.path.join(outpath,"log/{0}.ccs.log".format(SampleID))
+        os.path.join(outpath,"log/{0}.CCS.log".format(SampleID))
     params:
         ccstool = config["ccs"]["software"]["ccstool"],
         minpass = config["ccs"]["parameter"]["minpass"],

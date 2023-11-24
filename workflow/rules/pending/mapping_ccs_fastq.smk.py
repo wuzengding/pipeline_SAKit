@@ -23,7 +23,7 @@ def filter_css_reads( cupcake_read_stat):
 rule run_mapping_css_fastq:
     input:
         cupcake_collapsed_stat = rules.Isoform_filter_bycounts.output[0],
-        ccs_fastq_file = rules.Refine.output.ccs_fq
+        ccs_fastq_file = rules.Refine.output.flnc_fq
 
     
     output:
