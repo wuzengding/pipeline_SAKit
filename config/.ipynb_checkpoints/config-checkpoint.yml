@@ -21,7 +21,6 @@ Database:
   disgenet: /mnt/user/wzd/00.database/DisGeNET/curated_gene_disease_associations.tsv
   fusionhubdb: /mnt/user/wzd/00.database/FusionHubDB/Fusionhub_global_summary.txt
   transcript2gene: /mnt/user/wzd/00.database/17.annot_human/gtf_hg38_SIRV_ERCC/gencode.v32.annotation.tr2g_gtf.tsv
-  dbsnp: /mnt/user/wzd/00.database/14.dbSNP/All_20180418.vcf.gz
   
   
 SoftwareTools:
