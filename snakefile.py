@@ -11,6 +11,8 @@ from collections import Counter
 import itertools
 import logging
 
+print("version: SAKit_1.4_20240228")
+
 if config["species"]=="mouse":
     configfile: "/mnt/user/wzd/05.pipeline_dev/pipeline_SAKit_v1.0/config/config_mouse.yml"
 elif config["species"]=="human":
@@ -45,7 +47,7 @@ rule all:
         # Make cmd
         cmdlog = os.path.join(outpath,"cmd/{0}.all_command.sh".format(SampleID))
 
-include: "workflow/rules/01.ccs.smk.py"
+#include: "workflow/rules/01.ccs.smk.py"
 include: "workflow/rules/02.demultiplex.smk.py"
 include: "workflow/rules/03.refine.smk.py"
 include: "workflow/rules/04.cluster.smk.py"

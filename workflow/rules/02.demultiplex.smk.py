@@ -1,6 +1,6 @@
 rule DeMultiplex:
     input:
-        ccsxml = os.path.join(outpath,"results/01.CCS_Trim/{0}.ccs.xml".format(SampleID)),
+        ccsbam=config["PACBIOREADS"]["ccsbam"],
         barcodefa = config["demultiplex"]["configfile"]["barcodefa"]
     output:
         demulxml = os.path.join(outpath,"results/01.CCS_Trim/{0}.demultiplex.consensusreadset.xml".format(SampleID)),
@@ -22,7 +22,7 @@ rule DeMultiplex:
         thread=config["demultiplex"]["parameter"]["thread"],
     shell:
         """
-        {params.limatool} {input.ccsxml} {input.barcodefa} {output.demulxml} --max-scored-barcodes {params.maxscoredbarcode} \
+        {params.limatool} {input.ccsbam} {input.barcodefa} {output.demulxml} --max-scored-barcodes {params.maxscoredbarcode} \
         --max-scored-adapters {params.maxscoredadapter} \
         --min-passes {params.minpass}  \
         --min-length {params.minlength} \
