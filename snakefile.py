@@ -11,6 +11,8 @@ from collections import Counter
 import itertools
 import logging
 
+
+print("version:SAKit_1.3_202311")
 if config["species"]=="mouse":
     configfile: "/mnt/user/wzd/05.pipeline_dev/pipeline_SAKit_v1.0/config/config_mouse.yml"
 elif config["species"]=="human":
